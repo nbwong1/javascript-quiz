@@ -1,7 +1,7 @@
 // start buttons => timer starts and question appears
-var questionsIndex = 0;
+var currentQuestionIndex = 0;
 var quizTime = questions.length * 15;
-var timer;
+var timerId;
 
 // variables for the DOM
 var questionsEl = document.getElementById("questions");
@@ -11,6 +11,10 @@ var choicesEl = document.getElementById("choices");
 var startBtn = document.getElementById("start");
 var initialsEl = document.getElementById("initials");
 var feedbackEl = document.getElementById("feedback");
+
+var sfxRight = new Audio("assets/sfw/correct.wav");
+var sfxWrong = new Audio("assets/sfw/incorrect.wav");
+
 
 // answer the question, receive the next question
 function startQuiz() {
@@ -24,7 +28,26 @@ function startQuiz() {
   getQuestion();
 }
 
+function getQuestion() {
+  var currentQuestion = questions[currentQuestionIndex];
+  
+  var titleEl = document.getElementById("questions-title");
+  titleEl.textContent = presentQuestion.title;
 
+  choicesEl.innerHTML = "";
+
+  currentQuestion.choices.forEach(function(choice, i) {
+    var choiceNode = document.createElement("button");
+    choiceNode.setAttribute("class", "choice");
+    choiceNode.setAttribute("value", choice);
+
+    choiceNode.textContent = i + 1 + "." + choice;
+
+    choiceNode.onclick = questionClick;
+
+    choicesEl.appendChild(choiceNode);
+  });
+}
 // sounds for correct and wrong answers
 
 // end of the quiz (answer all questions or timer hits 0) and the game is over
