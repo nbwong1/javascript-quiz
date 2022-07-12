@@ -13,6 +13,17 @@ var initialsEl = document.getElementById("initials");
 var feedbackEl = document.getElementById("feedback");
 
 // answer the question, receive the next question
+function startQuiz() {
+  var startScreenEl = document.getElementById("start-screen");
+  startScreenEl.setAttribute("class", "hide");
+
+  questionsEl.setAttribute("class");
+
+  timerId = setInterval(clockTick, 1000);
+
+  getQuestion();
+}
+
 
 // sounds for correct and wrong answers
 
