@@ -16,7 +16,7 @@ var sfxRight = new Audio("assets/sfw/correct.wav");
 var sfxWrong = new Audio("assets/sfw/incorrect.wav");
 
 
-// answer the question, receive the next question
+// hiding the start menu, answer and moving through the questions
 function startQuiz() {
   var startScreenEl = document.getElementById("start-screen");
   startScreenEl.setAttribute("class", "hide");
@@ -27,7 +27,7 @@ function startQuiz() {
 
   getQuestion();
 }
-
+//getting the question from the questions.js
 function getQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
   
@@ -48,9 +48,37 @@ function getQuestion() {
     choicesEl.appendChild(choiceNode);
   });
 }
-// sounds for correct and wrong answers
+//based on the answer the user selects
+function questionClick() {
+  if(this.value !== questions[currentQuestionIndex].answer) {
+    time -= 15;
+    if (time<0) {
+      time = 0;
+    }
+    // if the user selects the wrong answer, play the incorrect audio.
+    timerEl.textContent = time;
+    sfwWrong.play();
+    feedbackEl.textContent = "Wrong!";
+    
+    //if the correct answer, play the correct audio.
+  } else {
+    sfxRight.play();
+    feedbackEl.textContent = "Correct!";
+  }
 
-// end of the quiz (answer all questions or timer hits 0) and the game is over
+  feedbackEl.setAttribute("class", "feedback");
+  setTimeout(function() {
+    feedbackEl.setAttribute("class", "feedback hide");
+  }, 1000);
+  
+// update the index that is being selected to move to the next question.
+  currentQuestionIndex++;
 
-// can save initials on high score page
+//checking if there are still some questions to select from
+  if (currentQuestionIndex == questions.length) {
+    quizEnd();
+  } else {
+    getQuestion();
+  }
+}
 
