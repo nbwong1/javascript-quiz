@@ -1,6 +1,6 @@
 // start buttons => timer starts and question appears
 var currentQuestionIndex = 0;
-var quizTime = questions.length * 15;
+var time = questions.length * 15;
 var timerId;
 
 // variables for the DOM
@@ -15,15 +15,16 @@ var feedbackEl = document.getElementById("feedback");
 var sfxRight = new Audio("assets/sfw/correct.wav");
 var sfxWrong = new Audio("assets/sfw/incorrect.wav");
 
-
 // hiding the start menu, answer and moving through the questions
 function startQuiz() {
   var startScreenEl = document.getElementById("start-screen");
   startScreenEl.setAttribute("class", "hide");
 
-  questionsEl.setAttribute("class");
+  questionsEl.removeAttribute("class");
 
   timerId = setInterval(clockTick, 1000);
+
+  timerEl.textContent = time;
 
   getQuestion();
 }
@@ -31,8 +32,8 @@ function startQuiz() {
 function getQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
   
-  var titleEl = document.getElementById("questions-title");
-  titleEl.textContent = presentQuestion.title;
+  var titleEl = document.getElementById("question-title");
+  titleEl.textContent = currentQuestion.title;
 
   choicesEl.innerHTML = "";
 
@@ -50,19 +51,22 @@ function getQuestion() {
 }
 //based on the answer the user selects
 function questionClick() {
-  if(this.value !== questions[currentQuestionIndex].answer) {
+  if (this.value !== questions[currentQuestionIndex].answer) {
     time -= 15;
-    if (time<0) {
+    
+    if (time < 0) {
       time = 0;
     }
     // if the user selects the wrong answer, play the incorrect audio.
     timerEl.textContent = time;
-    sfwWrong.play();
-    feedbackEl.textContent = "Wrong!";
     
-    //if the correct answer, play the correct audio.
+    sfxWrong.play();
+    
+    feedbackEl.textContent = "Wrong!";
+//if the correct answer, play the correct audio.
   } else {
     sfxRight.play();
+
     feedbackEl.textContent = "Correct!";
   }
 
@@ -75,7 +79,7 @@ function questionClick() {
   currentQuestionIndex++;
 
 //checking if there are still some questions to select from
-  if (currentQuestionIndex == questions.length) {
+  if (currentQuestionIndex === questions.length) {
     quizEnd();
   } else {
     getQuestion();
@@ -87,8 +91,10 @@ function quizEnd() {
 
   var endScreenEl = document.getElementById("end-screen");
   endScreenEl.removeAttribute("class");
+
   var finalScoreEl = document.getElementById("final-score");
   finalScoreEl.textContent = time;
+
   questionsEl.setAttribute("class", "hide");
 }
 
@@ -120,7 +126,8 @@ function saveHighscore() {
   }
 }
 
-function checkForEnter(enent) {
+function checkForEnter(event) {
+  
   if (event.key === "Enter") {
     saveHighscore();
   }

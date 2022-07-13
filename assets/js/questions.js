@@ -1,35 +1,29 @@
-// list of all questions, choices, and answers
 var questions = [
   {
-    title: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleans", "alerts", "numbers"],
-    answer: "alerts"
+    title: "When using 'console.log', where does your data appear?",
+    choices: ["Memory", "Applications", "Sources", "Console"],
+    answer: "Console"
   },
   {
-    title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "parentheses"
+    title: "What keyword defines a variable?",
+    choices: ["let", "var", "1 and 2", "None of the above"],
+    answer: "1 and 2"
   },
   {
-    title: "Arrays in JavaScript can be used to store ____.",
-    choices: [
-      "numbers and strings",
-      "other arrays",
-      "booleans",
-      "all of the above"
-    ],
-    answer: "all of the above"
+    title: "When an operator's value is NULL, the typeof returned by the unary operator is?",
+    choices: ["Boolean", "Undefined", "Object", "Integer"],
+    answer: "Object"
   },
   {
     title:
-      "String values must be enclosed within ____ when being assigned to variables.",
-    choices: ["commas", "curly brackets", "quotes", "parentheses"],
-    answer: "quotes"
+      "What does the Javascript 'debugger' statement do?",
+    choices: ["It will debug all the errors int he program at runtime", "It acts as a breakpoint in a program", "It will debug error in the current statement if any", "All of the above"],
+    answer: "It acts as a breakpoint in a program"
   },
   {
     title:
-      "A very useful tool used during development and debugging for printing content to the debugger is:",
-    choices: ["JavaScript", "terminal / bash", "for loops", "console.log"],
-    answer: "console.log"
+      "Which function is used to serialize an object into a JSON string in Javascript?",
+    choices: ["Stringify()", "Parse()", "Convert()", "None of the above"],
+    answer: "Stringify()"
   }
 ];
