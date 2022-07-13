@@ -10,9 +10,9 @@ We were provided with some code and I went ahead and utilzed what we were provid
 
 Here is a screenshot of the website I created:
 ### Landing Page
-![landing page for quiz]()
+![landing page for quiz](./js-quiz-screenshot.png)
 ### High Scores Page
-![high scores page for quiz]()
+![high scores page for quiz](./js-highscores-screenshot.png)
 
 I hope that this projects offers some insight into how web APIs work and how we can create games using websites. 
 
